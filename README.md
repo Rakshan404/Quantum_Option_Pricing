@@ -3,9 +3,9 @@
 
 ## 📘 Problem Summary (Compact & Clear)
 
-This project focuses on **pricing a European call option using quantum computing** instead of classical models like Black–Scholes or Monte Carlo.
+This project focuses on **pricing a call option using quantum computing** instead of classical models like Black–Scholes or Monte Carlo.
 
-A European call option has payoff:
+A option call option has payoff:
 \[
 \max(S_T - K, 0)
 \]
