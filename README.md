@@ -13,7 +13,7 @@ Quantum systems have the unique ability to represent and manipulate many possibl
 
 ---
 
-## 🎯 What the Prompt Wants You To Explore
+## 🎯 What the Prompt Wants us To Explore
 
 The question encourages exploring one of these directions:
 
