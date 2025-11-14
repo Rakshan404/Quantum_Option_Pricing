@@ -1,6 +1,8 @@
 # Quantum_Option_Pricing
 <img width="302" height="456" alt="Screenshot 2025-11-14 221128" src="https://github.com/user-attachments/assets/4808164c-a641-49be-a44e-3c94f51f549a" />
-
+<p>
+Quantum_Circuit☝️
+<p>
 
 The goal of this project is to understand and demonstrate **how quantum computing techniques can be used to price financial options**, as outlined in the challenge prompt.  
 A European call option is a financial instrument whose value depends on the **uncertain future price of a stock**.  
