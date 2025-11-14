@@ -5,7 +5,7 @@
 
 This project focuses on **pricing a call option using quantum computing** instead of classical models like Black–Scholes or Monte Carlo.
 
-A option call option has payoff:
+A option call has payoff:
 \[
 \max(S_T - K, 0)
 \]
