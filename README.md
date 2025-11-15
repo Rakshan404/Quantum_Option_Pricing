@@ -1,4 +1,4 @@
-                                                                      Quantum_Option_Pricing
+<center><h1>Quantum_Option_Pricing</h1></center>
 
 <img width="302" height="456" alt="image" src="https://github.com/user-attachments/assets/218ffeff-3476-4155-bc8a-6b4a8ee964c8" />
 
