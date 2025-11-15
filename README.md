@@ -3,7 +3,7 @@
 <p>
 Quantum_Circuit☝️
 <p>
-# Quantum Option Pricing Using Qiskit (5-Qubit Implementation)
+<h2>Quantum Option Pricing Using Qiskit (5-Qubit Implementation)</h2>
 
 This project demonstrates a minimal and transparent quantum approach to pricing a European call option using Qiskit 1.x. The goal is to show how a quantum circuit can approximate the expected payoff of an option by encoding a probability distribution into quantum amplitudes and applying controlled rotations that represent the payoff function.
 
