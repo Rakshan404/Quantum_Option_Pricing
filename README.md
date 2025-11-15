@@ -3,111 +3,59 @@
 <p>
 Quantum_Circuit☝️
 <p>
+# Quantum Option Pricing Using Qiskit (5-Qubit Implementation)
 
-The goal of this project is to understand and demonstrate **how quantum computing techniques can be used to price financial options**, as outlined in the challenge prompt.  
-A European call option is a financial instrument whose value depends on the **uncertain future price of a stock**.  
-Traditionally, options are priced using classical models like **Black–Scholes** or **Monte Carlo simulations**, which repeatedly simulate many possible future stock prices.
+This project demonstrates a minimal and transparent quantum approach to pricing a European call option using Qiskit 1.x. The goal is to show how a quantum circuit can approximate the expected payoff of an option by encoding a probability distribution into quantum amplitudes and applying controlled rotations that represent the payoff function.
 
-However, the prompt challenges us to rethink this problem using **quantum computing**.  
-Quantum systems have the unique ability to represent and manipulate many possible outcomes at the same time, making them a natural fit for financial problems involving uncertainty and probability.
+## Overview
 
----
+The final stock price under the risk-neutral model follows a lognormal distribution. Since quantum circuits operate on discrete states, the distribution is approximated using 5 qubits, giving 32 possible price bins. Each bin corresponds to one possible future stock price outcome.
 
-## 🎯 What the Prompt Wants us To Explore
+The notebook performs the following steps:
 
-The question encourages exploring one of these directions:
+1. **Discretization of Stock Price Distribution**  
+   The continuous lognormal distribution is divided into 32 bins. For each bin, the midpoint price and its probability mass are computed. These probabilities form the basis of the amplitude-encoded quantum state.
 
-- **Quantum random walks** to model price movement  
-- **Quantum machine learning (QML)** to learn the pricing function  
-- **Quantum circuits** that perform option pricing through amplitude encoding  
+2. **Amplitude Encoding**  
+   The square roots of the bin probabilities are loaded into a 5-qubit register using the `Initialize` instruction. This produces a quantum state where all price outcomes are represented in superposition according to their true probabilities.
 
-Our project takes the **quantum circuit approach**, which is a foundation for both quantum random walks and quantum Monte Carlo methods.
+3. **Payoff Function Encoding**  
+   For each basis state (representing a price bin), a multi-controlled RY rotation is applied to an ancilla qubit.  
+   - The rotation angle is proportional to the option payoff for that bin.  
+   - Bins with no payoff generate no rotation.  
+   Measuring the ancilla qubit allows estimation of the expected payoff.
 
----
+4. **Estimating the Quantum Expected Payoff**  
+   After the controlled rotations, the circuit is executed on the Aer simulator.  
+   The probability of the ancilla measuring as `|1⟩` is proportional to the normalized expected payoff. This value is rescaled and discounted to obtain the quantum price estimate.
 
-## 🧠 What This Project Actually Does
+5. **Classical Benchmark**  
+   Using the same discretized distribution, a classical expected payoff is calculated. This serves as the ground truth for evaluating the quantum estimate.
 
-We translate the **entire option-pricing workflow** into quantum operations.  
-Here’s the full idea in simple terms:
+## Purpose
 
-### **1. Uncertainty in Stock Prices → Quantum Amplitudes**
+This project is designed as an educational example illustrating:
 
-Future stock prices follow a **lognormal distribution**, but instead of simulating them one by one (like classical Monte Carlo), we encode this distribution into the **amplitudes of a quantum state**:
+- amplitude encoding of probability distributions,
+- controlled rotations for expectation estimation,
+- mapping financial payoff functions onto quantum operations,
+- comparison between classical and quantum pricing approaches,
+- compatibility with the Qiskit 1.x architecture.
 
-\[
-|\psi\rangle = \sum_i \sqrt{p_i} |i\rangle
-\]
+The implementation focuses on clarity and correctness rather than performance or quantum advantage.
 
-Each basis state \(|i\rangle\):
+## Limitations
 
-- represents a possible future price  
-- has amplitude √pᵢ (derived from probability pᵢ)
+- Only a simple European call option is modeled.
+- Uses a small 5-qubit discretization, which limits accuracy.
+- Does not implement full Quantum Amplitude Estimation or error mitigation.
+- Intended for demonstration and learning, not production-level finance.
 
-This allows the quantum system to represent **many future price scenarios simultaneously**.
+## Requirements
 
----
-
-### **2. Option Payoff → Quantum Rotation**
-
-The payoff of a European call option is:
-
-\[
-\max(S_T - K, 0)
-\]
-
-We encode this payoff into the quantum circuit using a **multi-controlled RY gate**, which rotates an **ancilla qubit**.  
-The rotation angle is proportional to the payoff for each price scenario.
-
-- Higher payoff → bigger rotation  
-- Lower payoff → smaller rotation  
-- Zero payoff → no rotation  
-
-This step is the quantum analogue of computing payoffs in classical Monte Carlo.
-
----
-
-### **3. Expected Payoff → Probability of Ancilla = 1**
-
-After running the circuit, we measure the ancilla qubit many times (shots).  
-The frequency of seeing the ancilla in state \(|1⟩\) is directly related to the **expected payoff** of the option.
-
-This is how the quantum system performs the “averaging” that classical Monte Carlo would normally require thousands or millions of samples to compute.
-
----
-
-### **4. Discounting → Quantum Option Price**
-
-Finally, we discount the expected payoff with:
-
-\[
-e^{-rT}
-\]
-
-to get the **present value of the option**, which is the final option price.
-
----
-
-## ✔ Why This Exactly Matches the Prompt
-
-This project satisfies the challenge requirements because:
-
-### **✓ It uses quantum computing to solve a real financial problem**
-We replace classical sampling with **quantum amplitude encoding and measurement**.
-
-### **✓ It demonstrates a meaningful quantum approach**
-Instead of just simulating formulas, we build a real quantum circuit that performs:
-
-- probability encoding  
-- payoff encoding  
-- expectation estimation  
-
-### **✓ It aligns with the suggested directions**
-Our circuit is a valid example of:
-- **quantum probabilistic modelling**,  
-- a building block for **quantum random walks**, and  
-- a precursor to **quantum machine learning (QML)** models for finance.
-
-### **✓ It produces correct results**
-The quantum-estimated option price comes very close to the classical price:
+- Python 3.10+
+- Qiskit 1.x
+- Qiskit Aer
+- NumPy, SciPy, Matplotlib
 
 
