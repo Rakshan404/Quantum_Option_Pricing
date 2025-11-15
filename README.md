@@ -9,7 +9,7 @@ Quantum_Circuit☝️
 
 This project demonstrates a minimal and transparent quantum approach to pricing a European call option using Qiskit 1.x. The goal is to show how a quantum circuit can approximate the expected payoff of an option by encoding a probability distribution into quantum amplitudes and applying controlled rotations that represent the payoff function.
 
-## Overview
+## Overview (Comments are provided in the code for line-by-line explanation)
 
 The final stock price under the risk-neutral model follows a lognormal distribution. Since quantum circuits operate on discrete states, the distribution is approximated using 5 qubits, giving 32 possible price bins. Each bin corresponds to one possible future stock price outcome.
 
