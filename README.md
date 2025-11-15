@@ -34,7 +34,7 @@ The notebook performs the following steps:
 
 ## Purpose
 
-This project is designed as an educational example illustrating:
+This project is designed as an example illustrating:
 
 - amplitude encoding of probability distributions,
 - controlled rotations for expectation estimation,
@@ -49,7 +49,6 @@ The implementation focuses on clarity and correctness rather than performance or
 - Only a simple European call option is modeled.
 - Uses a small 5-qubit discretization, which limits accuracy.
 - Does not implement full Quantum Amplitude Estimation or error mitigation.
-- Intended for demonstration and learning, not production-level finance.
 
 ## Requirements
 
